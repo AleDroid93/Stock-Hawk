@@ -6,46 +6,62 @@
     android:layout_height="match_parent"
     tools:context="com.udacity.stockhawk.ui.StockHistoryActivity">
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView2" />
+
+    <TextView
+        android:text="COMPANY:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/company_label"
+        android:background="@color/material_cyan_00838f"
+        android:contentDescription="COMPANY NAME"
+        android:textStyle="normal|italic"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentTop="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp" />
+
     <TextView
         android:text="Microsoft"
         android:textSize="32sp"
-        android:padding="16dp"
+        android:paddingLeft="16dp"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:background="@color/material_cyan_00838f"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/company_label" />
 
     <TextView
-        android:text="MSFT"
+        android:text="PRICE:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:id="@+id/price_label"
+        android:paddingLeft="16dp"
+        android:background="@color/material_cyan_00838f"
+        android:paddingTop="8dp"
+        android:textStyle="normal|italic"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="65.00"
         android:textSize="24sp"
         android:paddingLeft="16dp"
         android:paddingBottom="16dp"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
         android:background="@color/material_cyan_00838f"
-        android:id="@+id/textView2" />
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView2"
-        android:layout_above="@+id/textView3" />
-
-    <TextView
-        android:text="empty"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/material_cyan_00838f"
-        android:id="@+id/textView3"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/price_label"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

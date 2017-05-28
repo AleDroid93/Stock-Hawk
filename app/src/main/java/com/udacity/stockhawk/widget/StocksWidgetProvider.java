@@ -37,16 +37,16 @@ public class StocksWidgetProvider extends AppWidgetProvider {
 
             // PENDING INTENT PER QUANDO SARà DISPONIBILE LA DETAIL ACTIVITY
 
-            Intent intentStockGraph = new Intent(context, MainActivity.class);
+            Intent intentStockGraph = new Intent(context, StockHistoryActivity.class);
             PendingIntent pendingIntent = TaskStackBuilder.create(context)
                     .addNextIntentWithParentStack(intentStockGraph)
                     .getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
             views.setPendingIntentTemplate(R.id.widget,pendingIntent);
-
+            views.setOnClickPendingIntent(R.id.widget_list_item_root, pendingIntent);
 
 
             // Tell the AppWidgetManager to perform an update on the current app widget
-            //appWidgetManager.updateAppWidget(appWidgetId, views);
+            appWidgetManager.updateAppWidget(appWidgetId, views);
 
         }
 
@@ -58,7 +58,7 @@ public class StocksWidgetProvider extends AppWidgetProvider {
         super.onReceive(context, intent);
         Timber.d("Intent ricevuto");
         if ("com.udacity.stockhawk.ACTION_DATA_UPDATED".equals(intent.getAction())) {
-            Timber.d("kitemmù");
+            Timber.d("bubu");
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
@@ -66,7 +66,8 @@ public class StocksWidgetProvider extends AppWidgetProvider {
 
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);
         }else{
-            Timber.d("vafammokk");
+            Timber.d(intent.getAction());
+            Timber.d("zaza");
         }
     }
 

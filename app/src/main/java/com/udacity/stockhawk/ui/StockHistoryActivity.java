@@ -33,9 +33,11 @@ public class StockHistoryActivity extends AppCompatActivity implements OnChartVa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_history);
         StockExample stock = null;
-        if (getIntent() != null)
+        if (getIntent() != null) {
             if (getIntent().hasExtra("stock"))
                 stock = getIntent().getParcelableExtra("stock");
+            Timber.d("RICEVUTO INTENT DI " + getIntent().getAction());
+        }
         LineChart chart = (LineChart) findViewById(R.id.chart);
         // Loading history
 
@@ -64,7 +66,7 @@ public class StockHistoryActivity extends AppCompatActivity implements OnChartVa
         chart.setOnChartValueSelectedListener(this);
         chart.invalidate(); // refresh
         if(stock != null) {
-            ((TextView)findViewById(R.id.textView)).setText(stock.getId());
+            ((TextView)findViewById(R.id.textView)).setText(stock.getId() + " ("+ stock.getSym() + ")");
             ((TextView)findViewById(R.id.textView2)).setText(String.valueOf(stock.getPrice()));
 
             /* fornire una parsificazione dell'history
