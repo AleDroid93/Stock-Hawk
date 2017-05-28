@@ -8,49 +8,60 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.data.HistoryItem;
 import com.udacity.stockhawk.data.StockExample;
+import com.udacity.stockhawk.mock.MockUtils;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
+import timber.log.Timber;
 import yahoofinance.Stock;
 
-public class StockHistoryActivity extends AppCompatActivity {
-
+public class StockHistoryActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+    private ArrayList<HistoryItem> dataObjects;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_history);
         StockExample stock = null;
-        if(getIntent() != null)
-            if(getIntent().hasExtra("stock"))
+        if (getIntent() != null)
+            if (getIntent().hasExtra("stock"))
                 stock = getIntent().getParcelableExtra("stock");
         LineChart chart = (LineChart) findViewById(R.id.chart);
+        // Loading history
 
-        StockExample[] dataObjects = {  new StockExample("mon", null, 60.05, null),
-                                        new StockExample("tue", null, 60.34, null),
-                                        new StockExample("wed", null, 62.12, null),
-                                        new StockExample("tho", null,61.50, null),
-                                        new StockExample("fri", null,61.73, null),
-                                        new StockExample("sat", null,60.23, null),
-                                        new StockExample("sun", null,60.88, null)};
+
+        if (stock != null) {
+            Timber.d("\n HISTORY OF "+ stock.getId() +"\n"+ stock.getHistory());
+
+            String hist = stock.getHistory();
+            dataObjects = MockUtils.historyToArrayList(hist);
+            Collections.reverse(dataObjects);
+        }
 
         List<Entry> entries = new ArrayList<>();
         float c = 1;
-        for (StockExample data : dataObjects) {
+        for (HistoryItem hi : dataObjects) {
             // turn your data into Entry objects
-            entries.add(new Entry(c++, (float) data.getPrice()));
+            float fPrice = Float.parseFloat(String.valueOf(hi.getPrice()));
+            entries.add(new Entry(c++, fPrice));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Stocks"); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(entries, "Stock History"); // add entries to dataset
         dataSet.setColor(255);
         dataSet.setValueTextColor(255);
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
+        chart.setOnChartValueSelectedListener(this);
         chart.invalidate(); // refresh
         if(stock != null) {
             ((TextView)findViewById(R.id.textView)).setText(stock.getId());
@@ -66,5 +77,16 @@ public class StockHistoryActivity extends AppCompatActivity {
             */
             //((TextView) findViewById(R.id.textView3)).setText(stock.getHistory());
         }
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        HistoryItem selectedItem = dataObjects.get((int)e.getX()-1);
+        Timber.d("DATE: "+ selectedItem.getDate() + ", PRICE: "+ selectedItem.getPrice());
+    }
+
+    @Override
+    public void onNothingSelected() {
+
     }
 }

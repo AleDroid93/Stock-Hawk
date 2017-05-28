@@ -68,4 +68,6 @@ public class StockExample implements Parcelable{
         parcel.writeDouble(price);
         parcel.writeString(sym);
     }
+
+
 }

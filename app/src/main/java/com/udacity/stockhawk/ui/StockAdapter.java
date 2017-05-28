@@ -133,7 +133,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             int adapterPosition = getAdapterPosition();
             cursor.moveToPosition(adapterPosition);
             int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
-            StockExample stockClicked = new StockExample(this.stockHistory,
+            String history = cursor.getString(Contract.Quote.POSITION_HISTORY);
+            StockExample stockClicked = new StockExample(history,
                     this.stockName,
                     Double.parseDouble(this.price.getText().subSequence(1,6).toString()),
                     cursor.getString(symbolColumn));
