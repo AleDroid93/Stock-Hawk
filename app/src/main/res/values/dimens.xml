@@ -5,7 +5,7 @@
     <dimen name="widget_stocks_default_width">250dp</dimen>
     <dimen name="widget_stocks_default_height">180dp</dimen>
     <dimen name="widget_stocks_min_resize_width">@dimen/widget_stocks_default_width</dimen>
-    <dimen name="widget_stocks_min_resize_height">60dp</dimen>
+    <dimen name="widget_stocks_min_resize_height">100dp</dimen>
 
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="stocks_widget_text_size">24dp</dimen>

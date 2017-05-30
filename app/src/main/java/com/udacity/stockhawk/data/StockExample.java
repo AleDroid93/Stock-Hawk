@@ -10,20 +10,20 @@ import android.os.Parcelable;
 public class StockExample implements Parcelable{
 
     private String history;
-    private String id;
+    private String companyName;
     private double price;
     private String sym;
 
     public StockExample(String history, String id, double price, String sym) {
         this.history = history;
-        this.id = id;
+        this.companyName = id;
         this.sym = sym;
         this.price = price;
     }
 
     protected StockExample(Parcel in) {
         history = in.readString();
-        id = in.readString();
+        companyName = in.readString();
         price = in.readDouble();
         sym = in.readString();
     }
@@ -49,7 +49,7 @@ public class StockExample implements Parcelable{
     }
 
     public String getId() {
-        return id;
+        return companyName;
     }
 
     public double getPrice() {
@@ -64,7 +64,7 @@ public class StockExample implements Parcelable{
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(history);
-        parcel.writeString(id);
+        parcel.writeString(companyName);
         parcel.writeDouble(price);
         parcel.writeString(sym);
     }

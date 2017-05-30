@@ -10,15 +10,15 @@
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/chart_history_price"
         android:layout_below="@+id/textView2" />
 
     <TextView
-        android:text="COMPANY:"
+        android:text="@string/stock_company_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/company_label"
         android:background="@color/material_cyan_00838f"
-        android:contentDescription="COMPANY NAME"
         android:textStyle="normal|italic"
         android:layout_alignParentStart="true"
 
@@ -27,9 +27,10 @@
         android:paddingTop="16dp" />
 
     <TextView
-        android:text="Microsoft"
+        android:text="@string/stock_company_def_name"
         android:textSize="32sp"
         android:paddingLeft="16dp"
+        android:contentDescription="@string/stock_company_label"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
         android:layout_below="@+id/company_label" />
 
     <TextView
-        android:text="PRICE:"
+        android:text="@string/stock_price_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
@@ -52,11 +53,12 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="65.00"
+        android:text="@string/stock_price_def_value"
         android:textSize="24sp"
         android:paddingLeft="16dp"
         android:paddingBottom="16dp"
         android:textColor="@android:color/white"
+        android:contentDescription="@string/stock_price_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/material_cyan_00838f"

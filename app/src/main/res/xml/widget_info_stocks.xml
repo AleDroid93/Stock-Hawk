@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:initialKeyguardLayout="@layout/widget_stocks"
     android:initialLayout="@layout/widget_stocks"
-    android:minHeight="60dp"
+    android:minHeight="@dimen/widget_stocks_default_height"
     android:minResizeHeight="@dimen/widget_stocks_min_resize_height"
     android:minResizeWidth="@dimen/widget_stocks_min_resize_width"
     android:minWidth="@dimen/widget_stocks_default_width"

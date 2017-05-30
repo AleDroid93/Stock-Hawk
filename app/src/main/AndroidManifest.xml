@@ -56,7 +56,15 @@
             android:name=".widget.StocksWidgetRemoteViewsService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".ui.StockHistoryActivity"></activity>
+        <activity android:name=".ui.StockHistoryActivity"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme"
+            android:label="Stock Details"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,7 +1,10 @@
 package com.udacity.stockhawk.ui;
 
+import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -28,6 +31,7 @@ import yahoofinance.Stock;
 
 public class StockHistoryActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     private ArrayList<HistoryItem> dataObjects;
+    private int backState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +40,11 @@ public class StockHistoryActivity extends AppCompatActivity implements OnChartVa
         if (getIntent() != null) {
             if (getIntent().hasExtra("stock"))
                 stock = getIntent().getParcelableExtra("stock");
-            Timber.d("RICEVUTO INTENT DI " + getIntent().getAction());
+            if(getIntent().hasExtra(Intent.ACTION_ANSWER)){
+                backState = getIntent().getIntExtra(Intent.ACTION_ANSWER, 1);
+            }
         }
         LineChart chart = (LineChart) findViewById(R.id.chart);
-        // Loading history
 
 
         if (stock != null) {
@@ -68,16 +73,6 @@ public class StockHistoryActivity extends AppCompatActivity implements OnChartVa
         if(stock != null) {
             ((TextView)findViewById(R.id.textView)).setText(stock.getId() + " ("+ stock.getSym() + ")");
             ((TextView)findViewById(R.id.textView2)).setText(String.valueOf(stock.getPrice()));
-
-            /* fornire una parsificazione dell'history
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(timeStamp);
-
-            int mYear = calendar.get(Calendar.YEAR);
-            int mMonth = calendar.get(Calendar.MONTH);
-            int mDay = calendar.get(Calendar.DAY_OF_MONTH);
-            */
-            //((TextView) findViewById(R.id.textView3)).setText(stock.getHistory());
         }
     }
 
@@ -90,5 +85,24 @@ public class StockHistoryActivity extends AppCompatActivity implements OnChartVa
     @Override
     public void onNothingSelected() {
 
+    }
+
+
+    /**
+     * This method check if the "back" button is touched from the Action Bar.
+     * If it's touched, then it return to the last state of the previous activity.
+     * @param item the menu item selected
+     * @return true if the "back button" is touched, the superclass method result instead
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent upIntent = NavUtils.getParentActivityIntent(this);
+                upIntent.putExtra(Intent.EXTRA_TEXT, backState);
+                NavUtils.navigateUpTo(this, upIntent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

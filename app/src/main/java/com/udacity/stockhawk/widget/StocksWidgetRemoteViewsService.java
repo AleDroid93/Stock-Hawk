@@ -12,6 +12,7 @@ import android.widget.RemoteViewsService;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.data.StockExample;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -120,6 +121,9 @@ public class StocksWidgetRemoteViewsService extends RemoteViewsService {
                     final Intent fillInIntent = new Intent();
                     Uri stockUri = Contract.Quote.makeUriForStock(stockSymbol);
                     fillInIntent.setData(stockUri);
+                    String history = mCursor.getString(mCursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY));
+                    String companyName = mCursor.getString(mCursor.getColumnIndex(Contract.Quote.COLUMN_STOCK_NAME));
+                    fillInIntent.putExtra("stock", new StockExample(history, companyName, Double.parseDouble(stockPrice), stockSymbol));
                     listItemRemoteView.setOnClickFillInIntent(R.id.widget_list_item_root, fillInIntent);
 
                     return listItemRemoteView;

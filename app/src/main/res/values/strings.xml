@@ -17,23 +17,38 @@
     <string name="default_stocks_microsoft" translatable="false">MSFT</string>
     <string name="default_stocks_facebook" translatable="false">FB</string>
     <string name="stock_currency">$</string>
-
+    <string name="stock_price_label" translatable="true">CURRENT PRICE:</string>
+    <string name="stock_company_label" translatable="true">COMPANY:</string>
+    <string name="stock_company_def_name" translatable="false">Name Of Company</string>
+    <string name="stock_price_def_value">0.00</string>
+    <string name="chart_history_price">chart history price</string>
     <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
     <string name="title_widget_stocks" translatable="false">@string/pref_display_mode_key</string>
+    <string name="stock_item_def_price" translatable="false">0.00</string>
+    <string name="stock_item_def_change" translatable="false">$</string>
+    <string name="stock_item_symbol" translatable="false">Symbol</string>
+    <string name="stock_item_symbol_description" translatable="true">stock symbol</string>
+    <string name="stock_item_price_description" translatable="true">stock price</string>
+    <string name="stock_item_change_description" translatable="true">stock change</string>
+    <string name="error_descr" translatable="true">error message</string>
+
+
+
+
     <string name="widget_name" translatable="false">@string/app_name</string>
 
-    <string name="type_stock">Type a stock name</string>
-    <string name="stock_list">List of Stocks</string>
-    <string name="add_new_stock">Add a new Stock</string>
-    <string name="dialog_title">Add Stock</string>
-    <string name="dialog_hint">Symbol (e.g. GOOG)</string>
-    <string name="dialog_cancel">Cancel</string>
-    <string name="dialog_add">Add</string>
+    <string name="type_stock" translatable="true">Type a stock name</string>
+    <string name="stock_list" translatable="true">List of Stocks</string>
+    <string name="add_new_stock" translatable="true">Add a new Stock</string>
+    <string name="dialog_title" translatable="true">Add Stock</string>
+    <string name="dialog_hint" translatable="true">Symbol (e.g. GOOG)</string>
+    <string name="dialog_cancel" translatable="true">Cancel</string>
+    <string name="dialog_add" translatable="true">Add</string>
 
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
-    <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
-    <string name="toast_no_connectivity">Will refresh when network available.</string>
+    <string name="toast_stock_added_no_connectivity" translatable="true">Symbol %s added. Will refresh when network available.</string>
+    <string name="toast_no_connectivity" translatable="true">Will refresh when network available.</string>
 
 </resources>

@@ -41,8 +41,8 @@ public class StocksWidgetProvider extends AppWidgetProvider {
             PendingIntent pendingIntent = TaskStackBuilder.create(context)
                     .addNextIntentWithParentStack(intentStockGraph)
                     .getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setPendingIntentTemplate(R.id.widget,pendingIntent);
-            views.setOnClickPendingIntent(R.id.widget_list_item_root, pendingIntent);
+            views.setPendingIntentTemplate(R.id.widget_list,pendingIntent);
+
 
 
             // Tell the AppWidgetManager to perform an update on the current app widget
